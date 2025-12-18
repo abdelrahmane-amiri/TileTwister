@@ -10,12 +10,14 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    const int windowSize = 500;
+    const int windowSize = 600;
 
 public:
     Display();
 
-    void drawGrid(const Grid& grid);
+    void reset();
+
+    void drawGrid(); //le parametre = const Grid& grid
     void drawScore(int score, int best);
     void drawMessage(const std::string& message);
 };
