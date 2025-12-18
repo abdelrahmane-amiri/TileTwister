@@ -8,6 +8,6 @@ public:
     bool move(char direction);
     void addTiles();
     bool canMove();
-    
+    void reset();
 };
 
