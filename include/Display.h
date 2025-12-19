@@ -12,6 +12,12 @@ private:
 
     const int windowSize = 600;
 
+    const int sizeGrid = 4;
+    const int margin = 100;
+    const int cellPadding = 15;
+    const int spaceDisponible = windowSize - 2 * margin;
+    const int cellSize = (spaceDisponible - cellPadding * (sizeGrid + 1)) / sizeGrid;
+
 public:
     Display();
 

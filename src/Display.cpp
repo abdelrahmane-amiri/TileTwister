@@ -37,12 +37,6 @@ void Display::drawGrid(){
     SDL_SetRenderDrawColor(renderer, 250, 248, 239, 255);
     SDL_RenderClear(renderer);
     
-    const int sizeGrid = 4;
-    const int margin = 100;
-    const int cellPadding = 15;
-    const int spaceDisponible = windowSize - 2 * margin;
-    const int cellSize = (spaceDisponible - cellPadding * (sizeGrid + 1)) / sizeGrid;
-    
     SDL_Rect gridBg = {margin, margin, spaceDisponible, spaceDisponible};
     SDL_SetRenderDrawColor(renderer, 187, 173, 160, 255);
     SDL_RenderFillRect(renderer, &gridBg);
@@ -64,11 +58,6 @@ void Display::drawGrid(){
 }
 
 void Display::drawTile(int value, int row, int col) {
-    const int sizeGrid = 4;
-    const int margin = 100;
-    const int cellPadding = 15;
-    const int spaceDisponible = windowSize - 2 * margin;
-    const int cellSize = (spaceDisponible - cellPadding * (sizeGrid + 1)) / sizeGrid;
 
     SDL_Rect tile = {
         margin + cellPadding + col * (cellSize + cellPadding),
@@ -77,7 +66,58 @@ void Display::drawTile(int value, int row, int col) {
         cellSize
     };
 
-    SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
+    switch (value)
+    {
+        case 2:
+            SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
+            break;
+
+        case 4:
+            SDL_SetRenderDrawColor(renderer, 237, 224, 200, 255);
+            break;
+
+        case 8:
+            SDL_SetRenderDrawColor(renderer, 242, 177, 121, 255);
+            break;
+
+        case 16:
+            SDL_SetRenderDrawColor(renderer, 245, 149, 99, 255);
+            break;
+
+        case 32:
+            SDL_SetRenderDrawColor(renderer, 246, 124, 95, 255);
+            break;
+
+        case 64:
+            SDL_SetRenderDrawColor(renderer, 246, 94, 59, 255);
+            break;
+
+        case 128:
+            SDL_SetRenderDrawColor(renderer, 237, 207, 114, 255);
+            break;
+
+        case 256:
+            SDL_SetRenderDrawColor(renderer, 237, 204, 97, 255);
+            break;
+
+        case 512:
+            SDL_SetRenderDrawColor(renderer, 237, 200, 80, 255);
+            break;
+
+        case 1024:
+            SDL_SetRenderDrawColor(renderer, 237, 197, 63, 255);
+            break;
+
+        case 2048:
+            SDL_SetRenderDrawColor(renderer, 237, 194, 46, 255);
+            break;
+
+        default:
+            SDL_SetRenderDrawColor(renderer, 205, 193, 180, 255);
+            break;
+            }
+
+    //SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
     SDL_RenderFillRect(renderer, &tile);
 }
 
