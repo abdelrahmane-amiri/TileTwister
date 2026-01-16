@@ -1,7 +1,0 @@
-# ninja log v7
-58	478	7876012101667546	CMakeFiles/2048.dir/src/InputManager.cpp.obj	7209b131f62499ae
-45	480	7876012101545573	CMakeFiles/2048.dir/src/Grille.cpp.obj	251860c75bb4c834
-40	482	7876012101481167	CMakeFiles/2048.dir/src/Game.cpp.obj	11496efb28c1b2ad
-51	483	7876012101613895	CMakeFiles/2048.dir/src/Affichage.cpp.obj	17216cb45e007980
-33	2146	7876012101420957	CMakeFiles/2048.dir/src/main.cpp.obj	8be4171c8ecf9eba
-2147	2436	7876012122560566	2048.exe	cae37e179acab0ab
