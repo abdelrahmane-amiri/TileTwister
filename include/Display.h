@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <string>
 
 class Grid;
@@ -9,14 +10,15 @@ class Display {
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TTF_Font* font;
 
     const int windowSize = 600;
 
     const int sizeGrid = 4;
     const int margin = 100;
     const int cellPadding = 15;
-    const int spaceDisponible = windowSize - 2 * margin;
-    const int cellSize = (spaceDisponible - cellPadding * (sizeGrid + 1)) / sizeGrid;
+    const int disponible = windowSize - 2 * margin;
+    const int cellSize = (disponible - cellPadding * (sizeGrid + 1)) / sizeGrid;
 
 public:
     Display();

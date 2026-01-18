@@ -2,6 +2,7 @@
 #include "Grid.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 #include <iostream>
 
 Display::Display(){
@@ -17,6 +18,8 @@ Display::Display(){
 
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
+    TTF_Init();
+    font = TTF_OpenFont("C:/Users/abdel/Desktop/TileTwister/build/assets/fonts/font1.ttf", 48);
 
 
 }
@@ -29,7 +32,6 @@ void Display::present() {
 void Display::reset(){
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
 }
 
 void Display::drawGrid(){
@@ -37,24 +39,22 @@ void Display::drawGrid(){
     SDL_SetRenderDrawColor(renderer, 250, 248, 239, 255);
     SDL_RenderClear(renderer);
     
-    SDL_Rect gridBg = {margin, margin, spaceDisponible, spaceDisponible};
+    SDL_Rect gridBg = {margin, margin, disponible, disponible};
     SDL_SetRenderDrawColor(renderer, 187, 173, 160, 255);
     SDL_RenderFillRect(renderer, &gridBg);
     
     SDL_SetRenderDrawColor(renderer, 205, 193, 180, 255);
+
     for (int row = 0; row < sizeGrid; ++row) {
         for (int col = 0; col < sizeGrid; ++col) {
-            SDL_Rect cell = {
-                margin + cellPadding + col * (cellSize + cellPadding),
-                margin + cellPadding + row * (cellSize + cellPadding),
-                cellSize,
-                cellSize
-            };
+
+            int x = margin + cellPadding + col * (cellSize + cellPadding);
+            int y = margin + cellPadding + row * (cellSize + cellPadding);
+
+            SDL_Rect cell = { x, y, cellSize, cellSize };
             SDL_RenderFillRect(renderer, &cell);
         }
     }
-    
-    SDL_RenderPresent(renderer);
 }
 
 void Display::drawTile(int value, int row, int col) {
@@ -119,11 +119,30 @@ void Display::drawTile(int value, int row, int col) {
 
     //SDL_SetRenderDrawColor(renderer, 238, 228, 218, 255);
     SDL_RenderFillRect(renderer, &tile);
+
+    SDL_Color textColor = {119, 110, 101, 255};
+    
+    //Revoir
+    SDL_Surface* surface = TTF_RenderText_Blended(font, std::to_string(value).c_str(), textColor);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    SDL_Rect textRect;
+    textRect.w = surface->w;
+    textRect.h = surface->h;
+    textRect.x = tile.x + (tile.w - textRect.w) / 2;
+    textRect.y = tile.y + (tile.h - textRect.h) / 2;
+
+    SDL_FreeSurface(surface);
+
+    SDL_RenderCopy(renderer, texture, NULL, &textRect);
+
+    SDL_DestroyTexture(texture);
 }
 
 
 void Display::drawScore(int score, int best){
-
+    roundedBoxRGBA(renderer, 175, 25, 275, 75, 4, 187, 173, 160, 255);
+    roundedBoxRGBA(renderer, 325, 25, 425, 75, 4, 187, 173, 160, 255);
 }
 
 void Display::drawMessage(const std::string& message){
