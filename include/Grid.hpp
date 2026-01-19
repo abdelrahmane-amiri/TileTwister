@@ -2,7 +2,7 @@
 
 class Grid {
 private:
-    
+
 
 public:
     Grid();
