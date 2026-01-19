@@ -61,4 +61,8 @@ bool Grid::moveLeft() {
     return moved;
 }
 
+bool Grid::move(char direction) {
+    bool moved = false;
+    bool merged[SIZE][SIZE] = { false }; 
+}
 

@@ -2,11 +2,12 @@
 
 class Grid {
 private:
-    static const int SIZE = 4;
+
 
 public:
     Grid();
 
+    static const int SIZE = 4;
     int tiles[SIZE][SIZE];
 
     bool move(char direction);
